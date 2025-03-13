@@ -158,8 +158,8 @@ const OddsGameSimulation = () => {
     
     // NEW: Process buy volume - this puts price pressure on both tokens
     // First, calculate ODDS needed to buy the game token
-    const oddsNeededForBuy = game.buyVolume * 0.5; // 50% of buy volume goes to buying ODDS first
-    const gameTokenBuyVolume = game.buyVolume;
+    // const oddsNeededForBuy = game.buyVolume * 0.5; // 50% of buy volume goes to buying ODDS first
+    // const gameTokenBuyVolume = game.buyVolume;
     
     // Calculate price impact for game token from buys
     // Using a simple bonding curve model: price = initialPrice * (initialSupply/currentSupply)^2
@@ -351,6 +351,9 @@ const OddsGameSimulation = () => {
       case 'value-chart':
         content = `Time: ${formatTime(simulationData.timestamps[dataIndex])}<br>Value: ${formatCurrency(data[dataIndex])}`;
         break;
+      default:
+        content = `Time: ${formatTime(simulationData.timestamps[dataIndex])}<br>Value: ${formatCurrency(data[dataIndex])}`;
+        break;
     }
     
     setTooltipState({
@@ -428,7 +431,7 @@ const OddsGameSimulation = () => {
     }, 100); // Update 10 times per second for smooth simulation
     
     return () => clearInterval(interval);
-  }, [simulationRunning, simulationTime, simulationSpeed]);
+  }, [simulationRunning, simulationTime, simulationSpeed, processGameCompletion, updateSimulationData]);
 
   // Calculate total ecosystem metrics
   const totalGamesCreated = games.length;

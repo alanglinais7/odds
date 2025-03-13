@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# $ODDS Game Ecosystem Simulation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project is a simulation of the $ODDS token ecosystem, designed to model and visualize the economic interactions between the main $ODDS token and game tokens within the ecosystem. The simulation demonstrates how token burns, creator payouts, and price dynamics evolve over time.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Real-time Simulation**: Run the simulation at various speeds to see how the ecosystem evolves over time
+- **Interactive Controls**: Pause, resume, and advance the simulation by hours or days
+- **Game Token Creation**: Add individual games or create them in bulk
+- **Customizable Parameters**: Set game volume and buy pressure for each token
+- **Visual Analytics**: Track key metrics through interactive charts
+- **Comprehensive Statistics**: View detailed stats on burn rates, creator payouts, and ecosystem value
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Metrics Tracked
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- $ODDS token price and supply
+- Game token prices and supplies
+- Total ecosystem value
+- Creator payouts
+- Value burned
+- Burn rates and projections
 
-### `npm test`
+## How It Works
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The simulation models a token ecosystem where:
 
-### `npm run build`
+1. The $ODDS token serves as the primary ecosystem token
+2. Game tokens are created by users and operate on a simple bonding curve model
+3. Each game runs on a fixed interval (20 seconds by default)
+4. When games complete, fees are collected and distributed:
+   - 10% goes to game creators
+   - 20% is used to burn $ODDS tokens
+   - 20% is used to burn the game's token
+5. Buy pressure is simulated to model market demand for tokens
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Economic Model
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The simulation uses a simplified bonding curve model where:
+- Token price = initialPrice * (initialSupply/currentSupply)^n
+- Burns reduce supply, increasing token price
+- Buy volume creates upward price pressure
+- Game volume increases slightly over time to simulate growing interest
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the application with `npm start`
+4. Use the interface to create games and run the simulation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Start the simulation**: Click the "Start" button to begin
+2. **Add games**: Enter a game name, set volume parameters, and click "Add Game"
+3. **Adjust speed**: Select a simulation speed from the dropdown
+4. **View metrics**: Monitor the charts and statistics as the simulation runs
+5. **Fast forward**: Use the time buttons to advance by hours or days
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Customization
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You can customize various aspects of the simulation:
+- Game volume: The amount of value processed per game
+- Buy volume: The amount of buy pressure per game
+- Bulk creation: Create multiple games at once
+- Simulation speed: Control how quickly time passes
 
-## Learn More
+## Technical Details
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This application is built with:
+- React.js for the UI components
+- HTML5 Canvas for the charts
+- CSS for styling
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The simulation logic uses a time-based approach to model economic interactions between tokens in the ecosystem.
 
-### Code Splitting
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Potential improvements for future versions:
+- More sophisticated economic models
+- Additional parameters for customization
+- Export/import of simulation configurations
+- Historical data analysis
+- Multiple ecosystem scenarios
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Include license information here]

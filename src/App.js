@@ -10,12 +10,12 @@ const ClockIcon = () => (
   </svg>
 );
 
-const PlusIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="12" y1="5" x2="12" y2="19"></line>
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-  </svg>
-);
+// const PlusIcon = () => (
+//   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//     <line x1="12" y1="5" x2="12" y2="19"></line>
+//     <line x1="5" y1="12" x2="19" y2="12"></line>
+//   </svg>
+// );
 
 const BarChartIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,13 +33,13 @@ const LayersIcon = () => (
   </svg>
 );
 
-const ChartLineIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 3v18h18"></path>
-    <path d="M18 12l-6-6-6 6"></path>
-    <path d="M8 12h8"></path>
-  </svg>
-);
+// const ChartLineIcon = () => (
+//   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//     <path d="M3 3v18h18"></path>
+//     <path d="M18 12l-6-6-6 6"></path>
+//     <path d="M8 12h8"></path>
+//   </svg>
+// );
 
 const FireIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -99,7 +99,7 @@ const OddsGameSimulation = () => {
 
   // Game duration and games per day
   const GAME_DURATION = 20; // seconds
-  const GAMES_PER_DAY = Math.floor((24 * 60 * 60) / GAME_DURATION);
+  // const GAMES_PER_DAY = Math.floor((24 * 60 * 60) / GAME_DURATION);
   
   // Create a new game or games in bulk
   const addGame = () => {
@@ -163,7 +163,7 @@ const OddsGameSimulation = () => {
     
     // Calculate price impact for game token from buys
     // Using a simple bonding curve model: price = initialPrice * (initialSupply/currentSupply)^2
-    const effectiveBuyPressure = gameTokenBuyVolume / game.price; // Tokens "bought"
+    // const effectiveBuyPressure = gameTokenBuyVolume / game.price; // Tokens "bought"
     
     // Update the game token supply and recalculate price accounting for buys and burns
     const newGameSupply = Math.max(0, game.supply - gameToBurn);
@@ -174,7 +174,7 @@ const OddsGameSimulation = () => {
     const newOddsSupply = Math.max(0, oddsToken.supply - oddsToBurn);
     
     // ODDS price also affected by buy pressure for game tokens
-    const oddsTokenBuyPressure = oddsNeededForBuy / oddsToken.price; // ODDS "bought"
+    // const oddsTokenBuyPressure = oddsNeededForBuy / oddsToken.price; // ODDS "bought"
     const newOddsPrice = oddsToken.initialPrice * Math.pow((oddsToken.initialSupply / newOddsSupply), 1.1);
     
     // Update the ODDS token with new values
@@ -211,6 +211,7 @@ const OddsGameSimulation = () => {
   const advanceHour = () => advanceTime(60 * 60);
   const advance12Hours = () => advanceTime(12 * 60 * 60);
   const advanceDay = () => advanceTime(24 * 60 * 60);
+  const advanceWeek = () => advanceTime(7 * 24 * 60 * 60)
 
   // Run or pause the simulation
   const toggleSimulation = () => {
@@ -431,7 +432,7 @@ const OddsGameSimulation = () => {
 
   // Calculate total ecosystem metrics
   const totalGamesCreated = games.length;
-  const totalGameTokenSupply = games.reduce((acc, game) => acc + game.supply, 0);
+  // const totalGameTokenSupply = games.reduce((acc, game) => acc + game.supply, 0);
   const totalGameTokenValue = games.reduce((acc, game) => acc + (game.supply * game.price), 0);
   const ecosystemTotalValue = (oddsToken.supply * oddsToken.price) + totalGameTokenValue;
   const totalCreatorPayouts = games.reduce((acc, game) => acc + game.totalCreatorPayout, 0);
@@ -491,6 +492,9 @@ const OddsGameSimulation = () => {
               </button>
               <button onClick={advanceDay} className="time-button">
                 +24 Hours
+              </button>
+              <button onClick={advanceWeek} className="time-button">
+                + One week
               </button>
             </div>
             
